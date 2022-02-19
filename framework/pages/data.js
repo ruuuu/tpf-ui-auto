@@ -1,3 +1,5 @@
+const { readFileSync } = require('fs');
+
 const dataGenerate = function () {
 
     const data = [{
@@ -40,11 +42,14 @@ const getArrayInnIP = function () { // массив ИНН для создани
 
 
 const getRandomInnYrLiso = function () { // получаем рандомный инн ЮЛ
-    const arrayYrLisoInn = ['3128098620', '2801138413', '3123349774', '3123101540'];// getArrayInnYrLiso();
+    const arrayYrLisoInn = getArrayInnYrLiso();
     //console.log('arrayYrLisoInn  ',  arrayYrLisoInn);
 
     let randomInnYrLiso = arrayYrLisoInn[Math.floor(Math.random() * arrayYrLisoInn.length)];
     return randomInnYrLiso;
+
+
+
 }
 
 

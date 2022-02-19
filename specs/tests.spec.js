@@ -34,39 +34,39 @@ describe('Набор тестов для создания НП', () => {
         const password = await app().data()[i].password;
         await app().loginPage().login(page, email, password);
 
-        const inn = '3114009108'; // getRandomInnYrLiso();
+        const inn = getRandomInnYrLiso();
         console.log('рандомный innYL: ', inn);
         await app().createTaxpayerPage().createTaxpayer2(page, inn);
 
 
 
-        // // ИНН:        
-        // const cellInn = await app().locatorPage().getLocator(await app().filterSearchPage().getLocatorInnCellInRequestsTab()); // в гриде, на вкладке Запросы, ячейка где хранится ИНН
-        // const cellInnText = await app().locatorPage().getElement(page, cellInn); // получаем текст элемента
-        // expect(cellInnText)
-        //     .to
-        //     .have
-        //     .string(inn);
+        // ИНН:        
+        const cellInn = await app().locatorPage().getLocator(await app().filterSearchPage().getLocatorInnCellInRequestsTab()); // в гриде, на вкладке Запросы, ячейка где хранится ИНН
+        const cellInnText = await app().locatorPage().getElement(page, cellInn); // получаем текст элемента
+        expect(cellInnText)
+            .to
+            .have
+            .string(inn);
 
 
 
-        // // Активность:  
-        // const cellActivity = await app().locatorPage().getLocator(await app().createTaxpayerPage().getLocatorCellActivityInRequestsTab()); // в гриде, на вкладке Зарпосы, ячейка где хранится АКтивность
-        // const cellActivityText = await app().locatorPage().getElement(page, cellActivity);
-        // expect(cellActivityText)
-        //     .to
-        //     .have
-        //     .string('Получение карты сведений о НП');
+        // Активность:  
+        const cellActivity = await app().locatorPage().getLocator(await app().createTaxpayerPage().getLocatorCellActivityInRequestsTab()); // в гриде, на вкладке Зарпосы, ячейка где хранится АКтивность
+        const cellActivityText = await app().locatorPage().getElement(page, cellActivity);
+        expect(cellActivityText)
+            .to
+            .have
+            .string('Получение карты сведений о НП');
 
 
 
-        // // Статус:  
-        // const cellStatus = await app().locatorPage().getLocator(await app().createTaxpayerPage().getLocatorCellStatusInRequestsTab()); // в гриде, на вкладке Зарпосы, ячейка где хранится Статус
-        // const cellStatusText = await app().locatorPage().getElement(page, cellStatus);
-        // expect(cellStatusText)
-        //     .to
-        //     .have
-        //     .string('Подтвержден');
+        // Статус:  
+        const cellStatus = await app().locatorPage().getLocator(await app().createTaxpayerPage().getLocatorCellStatusInRequestsTab()); // в гриде, на вкладке Зарпосы, ячейка где хранится Статус
+        const cellStatusText = await app().locatorPage().getElement(page, cellStatus);
+        expect(cellStatusText)
+            .to
+            .have
+            .string('Подтвержден');
 
     });
 

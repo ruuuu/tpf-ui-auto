@@ -13,12 +13,12 @@ const CreateTaxpayerPage = function () {
     const searchButton = ('#process-search--icon'); // кнпока поиска
     const searchInput = ('#process-search--input'); // поле поиска
     const searchResult = ('table>tbody>tr>td:nth-child(1)>span'); // ячейка в котром выдается результат
-    const noData = ('text="Нет данных."');
+    const noData = ('table>tbody>tr>td');
+    ////*[@id="grommetRoot"]/div/div[2]/div/div[3]/div[3]/div[1]/div/div/table/tbody/tr/td
 
 
     this.createTaxpayer2 = async function (page, inn) {
-
-        let k = 0;
+        let attemptCount = 0;
         let Urinn = inn; // нач значение 
         console.log('зашли в createTaxpayer2');
 
@@ -34,21 +34,19 @@ const CreateTaxpayerPage = function () {
 
             Urinn = getRandomInnYrLiso();
             await page.fill(searchInput, Urinn); // заполняем поле поиска
+            attemptCount++;
 
-            if (await page.textContent(noData) === 'Нет данных.') { //  await page.textContent(searchResult) === 'Нет данных.'
+            if (await page.textContent(noData) === 'Нет данных.') { // 
                 console.log('такого инн нет в системе');
                 break;
             }
 
-
-
         }
 
         console.log('вышли из цикла');
+        console.log('число попыток равно ', attemptCount);
+
         await this.createTaxpayer(page, Urinn);
-
-
-        await page.waitForTimeout(2000); // 2 сек ждем 
 
         await page.click(closeButton); // Крестик
 

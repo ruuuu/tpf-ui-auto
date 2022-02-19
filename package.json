@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest --config jest.config.js --testTimeout=10000"
+        "test": "jest --config jest.config.js --testTimeout=100000"
     },
     "repository": {
         "type": "git",
